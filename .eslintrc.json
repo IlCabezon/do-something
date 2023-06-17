@@ -11,7 +11,7 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "import/no-absolute-path": "off",
-    "linebreak-style": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": "off",
+    "linebreak-style": 0
   }
 }
