@@ -15,6 +15,18 @@
   @apply max-w-[1440px] mx-auto;
 }
 
-.active {
-  @apply bg-primary-blue
+/** START: general styles **/
+
+.custom-btn {
+  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
 }
+
+/** END: general styles **/
+
+/** START: Layout styles**/
+
+.nav-title {
+  @apply font-bold tracking-[1px] text-[20px] first-letter:text-[25px] first-letter:text-primary-violet text-primary-grey
+}
+
+/** END: layout styles **/
