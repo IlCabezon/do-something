@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npx tailwindcss -o dist/output.css --minify",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --fix",
     "preview": "vite preview"
   },
