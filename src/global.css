@@ -14,3 +14,7 @@
 .max-width {
   @apply max-w-[1440px] mx-auto;
 }
+
+.active {
+  @apply bg-primary-blue
+}
