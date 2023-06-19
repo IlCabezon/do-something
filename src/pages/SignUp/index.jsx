@@ -1,3 +1,3 @@
-export default function index() {
+export function Component() {
   return <div>Sign up</div>;
 }

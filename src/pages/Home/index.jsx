@@ -1,17 +1,7 @@
 // routing
 import { useLoaderData } from 'react-router-dom';
 
-export const loaderActivity = async () => {
-  // TODO implement abort controller
-
-  const res = await fetch('http://www.boredapi.com/api/activity');
-
-  const activity = await res.json();
-
-  return { activity };
-};
-
-export default function index() {
+export function Component() {
   const { activity } = useLoaderData();
 
   return (
