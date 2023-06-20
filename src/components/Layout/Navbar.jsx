@@ -34,25 +34,13 @@ export default function Navbar() {
         </NavLink>
         <div className="flex items-center gap-3">
           <div className="flex items-center">
-            <CustomButton onClick={toggleTheme}>
+            <CustomButton onClick={toggleTheme} containerStyles="px-1">
               <div className="theme-switch__container">
-                <div
-                  className={`theme-switch__icon__container transition-transform ${
-                    theme === 'dark' ? 'translate-x-0' : 'translate-x-[110%]'
-                  }`}
-                >
-                  {theme === 'dark' ? (
-                    <RiSunLine
-                      size={25}
-                      color="yellow"
-                      className="theme-switch__icon"
-                    />
+                <div className="theme-switch__icon__container transition-transform dark:rotate-[360deg]">
+                  {theme !== 'dark' ? (
+                    <RiSunLine size={25} className="theme-switch__icon" />
                   ) : (
-                    <RiMoonClearFill
-                      size={25}
-                      color="black"
-                      className="theme-switch__icon"
-                    />
+                    <RiMoonClearFill size={25} className="theme-switch__icon" />
                   )}
                 </div>
               </div>

@@ -54,6 +54,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 #app {
@@ -67,7 +68,13 @@
 /** START: general styles **/
 
 .custom-btn {
-  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none text-primary;
+  @apply 
+  flex flex-row justify-center items-center 
+  relative  
+  py-3 px-6 
+  outline-none 
+  text-primary
+  
 }
 
 /** END: general styles **/
@@ -117,8 +124,7 @@
 
 .theme-switch__container {
   @apply relative
-  w-[6rem] h-12
-  py-1 px-1
+  p-1
   rounded-full
   dark:bg-gray-800 bg-slate-200
   border-2 dark:border-primary border-primary
