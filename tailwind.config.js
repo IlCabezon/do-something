@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -11,17 +8,49 @@ export default {
         inter: ['Poppins', 'sans-serif'],
       },
       colors: {
-        'black-100': '#2B2C35',
+        'primary-black': 'var(--color-primary-black)',
         'primary-blue': {
-          DEFAULT: '#2B59FF',
-          100: '#F5F8FF',
+          DEFAULT: 'var(--color-primary-blue)',
+          100: 'var(--color-primary-blue-100)',
+          200: 'var(--color-primary-blue-200)',
+          300: 'var(--color-primary-blue-300)',
+          400: 'var(--color-primary-blue-400)',
+          500: 'var(--color-primary-blue-500)',
+          600: 'var(--color-primary-blue-600)',
+          700: 'var(--color-primary-blue-700)',
+          800: 'var(--color-primary-blue-800)',
+          900: 'var(--color-primary-blue-900)',
         },
-        'secondary-orange': '#f79761',
-        'light-white': {
-          DEFAULT: 'rgba(59,60,152,0.03)',
-          100: 'rgba(59,60,152,0.02)',
+        'primary-grey': {
+          DEFAULT: 'var(--color-primary-grey)',
+          100: 'var(--color-primary-grey-100)',
+          200: 'var(--color-primary-grey-200)',
+          300: 'var(--color-primary-grey-300)',
+          400: 'var(--color-primary-grey-400)',
+          500: 'var(--color-primary-grey-500)',
+          600: 'var(--color-primary-grey-600)',
+          700: 'var(--color-primary-grey-700)',
+          800: 'var(--color-primary-grey-800)',
+          900: 'var(--color-primary-grey-900)',
         },
-        grey: '#747A88',
+        'primary-white': 'var(--color-primary-white)',
+      },
+      textColor: {
+        primary: 'var(--color-text-primary)',
+        secondary: 'var(--color-text-secondary)',
+        default: 'var(--color-text-primary)',
+        inverse: 'var(--color-text-primary-inverse)',
+      },
+      backgroundColor: {
+        primary: 'var(--color-bg-primary)',
+        secondary: 'var(--color-bg-secondary)',
+        default: 'var(--color-bg-primary)',
+        inverse: 'var(--color-bg-primary-inverse)',
+      },
+      borderColor: {
+        primary: 'var(--color-primary-grey-500)',
+        secondary: 'var(--color-text-secondary)',
+        default: 'var(--color-bg-primary)',
       },
     },
   },
