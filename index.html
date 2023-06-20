@@ -8,17 +8,15 @@
     <title>Vite + React</title>
 
     <script>
-      const html = document.getElementById('app')
-      if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark')
+      const html = document.getElementById('app');
+
+      if(localStorage.theme){
+        html.classList.add(localStorage.theme);
+        localStorage.setItem('theme', localStorage.theme);
       } else {
-        html.classList.remove('dark');
-        localStorage.removeItem('theme')
+        html.classList.add('light');
+        html.classList.remove(['black']);
+        localStorage.setItem('theme', 'light');
       }
     </script>
   </head>
