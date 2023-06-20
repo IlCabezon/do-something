@@ -4,6 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-bg-primary: #fdf7ff;
+    --color-bg-secondary: #548bff;
+    --color-bg-primary-inverse: #12131b;
+
+    --color-text-primary: #000;
+    --color-text-secondary: #548bff;
+    --color-text-primary-inverse: #fdf7ff;
+
+    --color-primary-black: #12131b;
+    --color-primary-white: #fdf7ff;
+
+    --color-primary-blue: #548bff;
+    --color-primary-blue-100: rgb(84, 139, 255, 10%);
+    --color-primary-blue-200: rgb(84, 139, 255, 20%);
+    --color-primary-blue-300: rgb(84, 139, 255, 30%);
+    --color-primary-blue-400: rgb(84, 139, 255, 40%);
+    --color-primary-blue-500: rgb(84, 139, 255, 50%);
+    --color-primary-blue-600: rgb(84, 139, 255, 60%);
+    --color-primary-blue-700: rgb(84, 139, 255, 70%);
+    --color-primary-blue-800: rgb(84, 139, 255, 80%);
+    --color-primary-blue-900: rgb(84, 139, 255, 90%);
+
+    --color-primary-grey: rgb(175, 176, 179);
+    --color-primary-grey-100: rgb(175, 176, 179, 10%);
+    --color-primary-grey-200: rgb(175, 176, 179, 20%);
+    --color-primary-grey-300: rgb(175, 176, 179, 30%);
+    --color-primary-grey-400: rgb(175, 176, 179, 40%);
+    --color-primary-grey-500: rgb(175, 176, 179, 50%);
+    --color-primary-grey-600: rgb(175, 176, 179, 60%);
+    --color-primary-grey-700: rgb(175, 176, 179, 70%);
+    --color-primary-grey-800: rgb(175, 176, 179, 80%);
+    --color-primary-grey-900: rgb(175, 176, 179, 90%);
+  }
+
+  .dark {
+    --color-bg-primary: #12131b;
+    --color-bg-primary-inverse: #fdf7ff;
+
+    --color-text-primary: #fdf7ff;
+    --color-text-primary-inverse: #000;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,14 +56,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
+#app {
+  @apply transition-all
+}
+
 .max-width {
-  @apply max-w-[1440px] mx-auto;
+  @apply max-w-[1440px] max-lg:max-w-[100vw] mx-auto;
 }
 
 /** START: general styles **/
 
 .custom-btn {
-  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none text-primary;
 }
 
 /** END: general styles **/
@@ -26,7 +75,69 @@
 /** START: Layout styles**/
 
 .nav-title {
-  @apply font-bold tracking-[1px] text-[20px] first-letter:text-[25px] first-letter:text-primary-violet text-primary-grey
+  @apply font-bold tracking-[1px] text-[20px] 2xl:text-[25px] first-letter:text-[25px] first-letter:text-secondary text-primary;
 }
 
 /** END: layout styles **/
+
+/** START: hero styles **/
+
+.hero {
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto max-2xl:px-20 max-md:px-5 -translate-x-2;
+}
+
+.hero__title {
+  @apply 2xl:text-[72px] max-md:text-[34px] text-[50px] font-extrabold text-primary;
+}
+
+.hero__subtitle {
+  @apply text-[27px] max-md:text-[20px] text-primary font-light mt-5;
+}
+
+.hero__decorator {
+  @apply absolute -z-10
+  -bottom-5 left-5 max-md:-bottom-3 max-md:left-3 
+  w-full h-full 
+  bg-secondary bg-repeat-round  
+  overflow-hidden
+  rounded-xl;
+}
+
+.hero__customButton__container {
+  @apply w-[15rem] h-[3.5rem]
+  my-10 max-md:my-5
+  border-[2px] border-secondary rounded-md
+  flex
+  flex-nowrap;
+}
+
+/** END: hero styles **/
+
+/** START: theme switch styles **/
+
+.theme-switch__container {
+  @apply relative
+  w-[6rem] h-12
+  py-1 px-1
+  rounded-full
+  dark:bg-gray-800 bg-slate-200
+  border-2 dark:border-primary border-primary
+  flex items-center
+}
+
+.theme-switch__icon__container {
+  @apply
+  w-10 h-10
+  dark:bg-gray-800 bg-slate-200
+  border-2 dark:border-primary border-primary
+  rounded-full
+  flex justify-center items-center
+}
+
+.theme-switch__icon {
+  @apply
+  inline
+  px-0 m-0
+}
+
+/** END: theme switch styles **/

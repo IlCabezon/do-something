@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html class="dark">
+<html id="app">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link href="/dist/output.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+
+    <script>
+      const html = document.getElementById('app')
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark')
+      } else {
+        html.classList.remove('dark');
+        localStorage.removeItem('theme')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
