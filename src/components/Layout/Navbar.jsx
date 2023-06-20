@@ -27,8 +27,8 @@ export default function Navbar() {
           <div className="flex items-center gap-5">
             <img src={logo} alt="logo" className="w-10" />
             <div className="flex gap-2 max-md:hidden">
-              <span className="nav-title">Do</span>
-              <span className="nav-title">Something!</span>
+              <span className="brand-title">Do</span>
+              <span className="brand-title">Something!</span>
             </div>
           </div>
         </NavLink>

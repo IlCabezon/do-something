@@ -77,15 +77,11 @@
   
 }
 
-/** END: general styles **/
-
-/** START: Layout styles**/
-
-.nav-title {
+.brand-title {
   @apply font-bold tracking-[1px] text-[20px] 2xl:text-[25px] first-letter:text-[25px] first-letter:text-secondary text-primary;
 }
 
-/** END: layout styles **/
+/** END: general styles **/
 
 /** START: hero styles **/
 
@@ -147,3 +143,11 @@
 }
 
 /** END: theme switch styles **/
+
+/** START: signup styles **/
+
+.sign-up__container {
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px]
+}
+
+/** START: signup styles **/

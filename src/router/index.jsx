@@ -13,18 +13,28 @@ import {
 // components
 import Layout from '../components/Layout';
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
     element: <Layout />,
-    children: [
-      landingConfig,
-      homeConfig,
-      signUpConfig,
-      loginConfig,
-      activitiesToDoConfig,
-    ],
+    children: [],
   },
-]);
+];
+
+[
+  activitiesToDoConfig,
+  homeConfig,
+  landingConfig,
+  loginConfig,
+  signUpConfig,
+].forEach((page) => {
+  if (page.layout === false) {
+    routes.push(page);
+  } else {
+    routes[0].children.push(page);
+  }
+});
+
+const router = createBrowserRouter(routes);
 
 export default router;
