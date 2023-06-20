@@ -5,7 +5,8 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 // constants
-import { RiMoonClearFill, RiSunLine } from 'react-icons/ri';
+import { BsFillSunFill } from 'react-icons/bs';
+import { RiMoonClearFill } from 'react-icons/ri';
 import { navbarLinks } from '../../constants/links';
 
 // assets
@@ -27,18 +28,18 @@ export default function Navbar() {
           <div className="flex items-center gap-5">
             <img src={logo} alt="logo" className="w-10" />
             <div className="flex gap-2 max-md:hidden">
-              <span className="nav-title">Do</span>
-              <span className="nav-title">Something!</span>
+              <span className="brand-title">Do</span>
+              <span className="brand-title">Something!</span>
             </div>
           </div>
         </NavLink>
         <div className="flex items-center gap-3">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <CustomButton onClick={toggleTheme} containerStyles="px-1">
               <div className="theme-switch__container">
                 <div className="theme-switch__icon__container transition-transform dark:rotate-[360deg]">
                   {theme !== 'dark' ? (
-                    <RiSunLine size={25} className="theme-switch__icon" />
+                    <BsFillSunFill size={25} className="theme-switch__icon" />
                   ) : (
                     <RiMoonClearFill size={25} className="theme-switch__icon" />
                   )}

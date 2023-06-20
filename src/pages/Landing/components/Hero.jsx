@@ -7,7 +7,7 @@ import hero from '../../../assets/hero.svg';
 
 export default function Hero() {
   return (
-    <div className="flex justify-between max-lg:flex-col relative p-[40px] dark:bg-slate-800 bg-slate-200 rounded-xl">
+    <div className="flex justify-between max-lg:flex-col relative p-[40px] bg-primary-container rounded-xl">
       <div className="lg:w-[50%] max-lg:h-[50%]">
         <h1 className="hero__title">Find motivation in random tasks</h1>
         <p className="hero__subtitle">
