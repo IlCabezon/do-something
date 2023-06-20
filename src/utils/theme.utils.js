@@ -1,11 +1,7 @@
 export const themeSwitcher = () => {
   const html = document.getElementById('app');
 
-  if (
-    localStorage.theme === 'dark'
-    || (!('theme' in localStorage)
-      && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
+  if (localStorage.theme === 'dark') {
     html.classList.replace('dark', 'light');
     localStorage.setItem('theme', 'light');
   } else {
