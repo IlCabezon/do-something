@@ -8,6 +8,7 @@ export default {
         inter: ['Poppins', 'sans-serif'],
       },
       colors: {
+        'primary-error': 'var(--color-errors-primary)',
         'primary-black': 'var(--color-primary-black)',
         'primary-blue': {
           DEFAULT: 'var(--color-primary-blue)',
@@ -43,6 +44,7 @@ export default {
       },
       backgroundColor: {
         primary: 'var(--color-bg-primary)',
+        'primary-container': 'var(--color-bg-primary-container)',
         secondary: 'var(--color-bg-secondary)',
         default: 'var(--color-bg-primary)',
         inverse: 'var(--color-bg-primary-inverse)',

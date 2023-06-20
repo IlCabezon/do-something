@@ -9,14 +9,17 @@
     --color-bg-primary: #fdf7ff;
     --color-bg-secondary: #548bff;
     --color-bg-primary-inverse: #12131b;
+    --color-bg-primary-container: #e2e8f0;
 
     --color-text-primary: #000;
     --color-text-secondary: #548bff;
     --color-text-primary-inverse: #fdf7ff;
 
+    --color-errors-primary: #FF0000;
+
     --color-primary-black: #12131b;
     --color-primary-white: #fdf7ff;
-
+    
     --color-primary-blue: #548bff;
     --color-primary-blue-100: rgb(84, 139, 255, 10%);
     --color-primary-blue-200: rgb(84, 139, 255, 20%);
@@ -43,6 +46,7 @@
   .dark {
     --color-bg-primary: #12131b;
     --color-bg-primary-inverse: #fdf7ff;
+    --color-bg-primary-container: #1e293b;
 
     --color-text-primary: #fdf7ff;
     --color-text-primary-inverse: #000;
@@ -58,7 +62,7 @@
 }
 
 #app {
-  @apply transition-all
+  @apply transition-all;
 }
 
 .max-width {
@@ -67,18 +71,44 @@
 
 /** START: general styles **/
 
+.custom-input {
+  @apply
+  h-[45px] px-5 rounded-md w-full
+  border-[2px] border-primary 
+  bg-slate-100 dark:bg-slate-900 autofill:bg-black 
+  text-primary
+}
+
+.custom-input-error {
+  @apply
+  border-primary-error focus:border-primary-error focus:outline-none
+}
+
 .custom-btn {
-  @apply 
-  flex flex-row justify-center items-center 
+  @apply flex flex-row justify-center items-center 
   relative  
   py-3 px-6 
   outline-none 
-  text-primary
-  
+  text-primary;
+}
+
+.blue-bordered-button {
+  @apply border-[2px] border-secondary rounded-md
+  transition-all;
+}
+
+.disabled {
+  @apply
+  transition-all
+  font-semibold
+  text-primary-grey
+  bg-primary-grey-400 border-transparent !important
 }
 
 .brand-title {
-  @apply font-bold tracking-[1px] text-[20px] 2xl:text-[25px] first-letter:text-[25px] first-letter:text-secondary text-primary;
+  @apply font-bold tracking-[1px] text-[20px] 2xl:text-[25px] 
+  first-letter:text-[25px] first-letter:text-secondary 
+  text-primary;
 }
 
 /** END: general styles **/
@@ -124,30 +154,20 @@
   rounded-full
   dark:bg-gray-800 bg-slate-200
   border-2 dark:border-primary border-primary
-  flex items-center
+  flex items-center;
 }
 
 .theme-switch__icon__container {
-  @apply
-  w-10 h-10
+  @apply w-10 h-10
   dark:bg-gray-800 bg-slate-200
   border-2 dark:border-primary border-primary
   rounded-full
-  flex justify-center items-center
+  flex justify-center items-center;
 }
 
 .theme-switch__icon {
-  @apply
-  inline
-  px-0 m-0
+  @apply inline
+  px-0 m-0;
 }
 
 /** END: theme switch styles **/
-
-/** START: signup styles **/
-
-.sign-up__container {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px]
-}
-
-/** START: signup styles **/

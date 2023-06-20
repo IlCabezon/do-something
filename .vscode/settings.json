@@ -1,12 +1,8 @@
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.organizeImports": true
   },
-  "cSpell.words": [
-    "cssnano",
-    "linebreak",
-    "tailwindcss"
-  ]
+  "cSpell.words": ["cssnano", "linebreak", "tailwindcss"]
 }

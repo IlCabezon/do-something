@@ -1,15 +1,112 @@
-// assets
-import logo from '../../assets/logo.png';
+// routing
+import { Form, Link, useSubmit } from 'react-router-dom';
+
+// modules
+import { useFormik } from 'formik';
+import { number, object, ref, string } from 'yup';
+
+// components
+import { Fragment } from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
+import { CustomButton, CustomInput } from '../../components';
+
+// constants
+import { signUpFields } from '../../constants/formsFields';
+
+// styles
+import './sign-up.css';
 
 export function Component() {
+  const submit = useSubmit();
+
+  const initialValues = {
+    email: '',
+    password: '',
+    'password-check': '',
+    age: '',
+    name: '',
+    last: '',
+  };
+
+  const validationSchema = object({
+    email: string().email().required(),
+    password: string()
+      .required('Password is required')
+      .min(6, 'Password must be 6 characters long or more'),
+    'password-check': string().oneOf(
+      [ref('password'), null],
+      'Passwords must match',
+    ),
+    age: number().required().min(0),
+    name: string().required().min(4),
+    last: string().required(),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (formValues) => {
+      submit(formValues, { method: 'post' });
+    },
+  });
+  const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
+
   return (
-    <div className="w-[100vw] h-[100vh] p-10 bg-slate-500">
-      <div className="sing-up__container">
-        <div className="flex">
-          <img src={logo} alt="logo" />
-          <p className="brand-title">Do</p>
-          <p className="brand-title">Something!</p>
+    <div className="sign-up-page">
+      <div className="sign-up-page__container">
+        <div>
+          <Link to="/">
+            <div className="flex items-center gap-3 my-5">
+              <BsArrowLeft size={28} color="#548bff" className="p-0 m-0" />
+              <p className="text-secondary">Go back</p>
+            </div>
+          </Link>
+          <h3 className="text-primary font-semibold text-[25px]">
+            Sign up for your account
+          </h3>
         </div>
+        <Form
+          method="post"
+          onSubmit={handleSubmit}
+          className="flex flex-col mt-10 gap-4"
+        >
+          {signUpFields.map(({ name, type, placeholder }) => (
+            <Fragment key={name}>
+              <CustomInput
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                error={touched[name] && errors[name]}
+                value={values[name]}
+                onChange={(e) => {
+                  setTouched({ ...touched, [name]: true });
+                  handleChange(e);
+                }}
+              />
+
+              {errors[name] && touched[name] && (
+                <p className="text-primary-error first-letter:uppercase">
+                  {errors[name]}
+                </p>
+              )}
+            </Fragment>
+          ))}
+          <CustomButton
+            btnType="submit"
+            containerStyles="blue-bordered-button bg-secondary"
+            isDisabled={Object.values(errors).length}
+            name="sign-up_submit"
+          >
+            <p className="text-primary-white">Continue</p>
+          </CustomButton>
+          <CustomButton>
+            <Link to="/login">
+              <p className="text-secondary underline">
+                Already have an account? Log in
+              </p>
+            </Link>
+          </CustomButton>
+        </Form>
       </div>
     </div>
   );

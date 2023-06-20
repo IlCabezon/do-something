@@ -1,5 +1,14 @@
+// action
+import action from './action';
+
 export default {
-  path: '/*',
-  lazy: () => import('.'),
-  layout: false,
+  path: '/sign-up',
+  async lazy() {
+    const { Component } = await import('.');
+
+    return {
+      Component,
+      action,
+    };
+  },
 };
