@@ -5,19 +5,19 @@ import ReactDOM from 'react-dom/client';
 // styles
 import './global.css';
 
-// routing
-import { RouterProvider } from 'react-router-dom';
-
 // router
-import router from './router';
+import Router from './router';
 
 // contexts
 import { ThemeProvider } from './contexts/ThemeContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <Router />
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>,
 );

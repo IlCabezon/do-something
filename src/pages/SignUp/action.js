@@ -1,11 +1,13 @@
-// routing
-import { redirect } from 'react-router';
+// services
+import { createAccount, logInToAccount } from '../../services/session.services';
 
 export default async function action({ request }) {
   const formData = await request.formData();
   const user = Object.fromEntries(formData);
 
-  localStorage.setItem('session', JSON.stringify(user));
+  const token = await createAccount(user);
 
-  return redirect('/home');
+  const { session } = logInToAccount(token);
+
+  return { session };
 }

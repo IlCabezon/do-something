@@ -2,12 +2,11 @@
 import { useContext } from 'react';
 
 // routing
-import { NavLink } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
 // constants
 import { BsFillSunFill } from 'react-icons/bs';
 import { RiMoonClearFill } from 'react-icons/ri';
-import { navbarLinks } from '../../constants/links';
 
 // assets
 import logo from '../../assets/logo.png';
@@ -20,6 +19,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const isLanding = Boolean(useMatch('/sign-up'));
 
   return (
     <header className="py-5 md:px-20 max-md:px-5 w-full">
@@ -46,19 +46,18 @@ export default function Navbar() {
                 </div>
               </div>
             </CustomButton>
-            {navbarLinks.map(({ name, path }) => (
-              <CustomButton
-                key={name}
-                containerStyles="transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white"
+
+            <CustomButton
+              containerStyles="transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white "
+            >
+              <NavLink
+                to={isLanding ? '/login' : '/sign-up'}
+                className="text-secondary text-[15px] max-md:text-[13px] font-semibold  text-md group-hover:text-primary dark:group-hover:text-primary"
               >
-                <NavLink
-                  to={path}
-                  className="text-secondary text-[15px] max-md:text-[13px] font-semibold  text-md group-hover:text-primary dark:group-hover:text-primary"
-                >
-                  {name}
-                </NavLink>
-              </CustomButton>
-            ))}
+                {isLanding ? 'Login' : 'Sing Up' }
+              </NavLink>
+            </CustomButton>
+
           </div>
         </div>
       </nav>

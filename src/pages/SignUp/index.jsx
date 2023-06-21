@@ -1,3 +1,6 @@
+// native
+import { Fragment } from 'react';
+
 // routing
 import { Form, Link, useSubmit } from 'react-router-dom';
 
@@ -6,15 +9,11 @@ import { useFormik } from 'formik';
 import { number, object, ref, string } from 'yup';
 
 // components
-import { Fragment } from 'react';
-import { BsArrowLeft } from 'react-icons/bs';
-import { CustomButton, CustomInput } from '../../components';
+import { CustomButton, CustomInput, GoBackButton } from '../../components';
 
 // constants
 import { signUpFields } from '../../constants/formsFields';
 
-// styles
-import './sign-up.css';
 
 export function Component() {
   const submit = useSubmit();
@@ -52,15 +51,10 @@ export function Component() {
   const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="sign-up-page">
-      <div className="sign-up-page__container">
+    <div className="main-card-page">
+      <div className="main-card-page__container">
         <div>
-          <Link to="/">
-            <div className="flex items-center gap-3 my-5">
-              <BsArrowLeft size={28} color="#548bff" className="p-0 m-0" />
-              <p className="text-secondary">Go back</p>
-            </div>
-          </Link>
+          <GoBackButton />
           <h3 className="text-primary font-semibold text-[25px]">
             Sign up for your account
           </h3>
