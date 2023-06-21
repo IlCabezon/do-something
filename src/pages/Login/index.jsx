@@ -84,7 +84,7 @@ export function Component() {
             <p className="text-primary-white">Continue</p>
           </CustomButton>
           <CustomButton>
-            <Link to="/login">
+            <Link to="/sign-up">
               <p className="text-secondary underline">Sign up for an account</p>
             </Link>
           </CustomButton>
