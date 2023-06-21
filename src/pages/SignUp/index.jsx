@@ -23,6 +23,10 @@ import { AuthContext } from '../../contexts/AuthContext';
 // services
 import { createAccount, generateSession } from '../../services/session.services';
 
+// utils
+import { generateRandomColor } from '../../utils/colors.utils';
+import { generateAvatarInitials } from '../../utils/user.utils';
+
 export function Component() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -55,8 +59,17 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: async (formValues) => {
-      await createAccount(formValues);
-      const { session } = generateSession(formValues);
+      const avatar = {
+        color: generateRandomColor(),
+        name: generateAvatarInitials(formValues),
+      };
+      const formattedUser = {
+        ...formValues,
+        avatar,
+      };
+
+      await createAccount(formattedUser);
+      const { session } = generateSession(formattedUser);
       login(session);
       navigate('/home');
     },

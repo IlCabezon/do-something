@@ -13,12 +13,15 @@ import logo from '../../assets/logo.png';
 
 // components
 import CustomButton from '../CustomButton';
+import MenuAvatar from '../MenuAvatar';
 
 // contexts
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { user } = useContext(AuthContext);
   const isLanding = Boolean(useMatch('/sign-up'));
 
   return (
@@ -34,7 +37,7 @@ export default function Navbar() {
           </div>
         </NavLink>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 relative">
             <CustomButton onClick={toggleTheme} containerStyles="px-1">
               <div className="theme-switch__container">
                 <div className="theme-switch__icon__container transition-transform dark:rotate-[360deg]">
@@ -47,17 +50,18 @@ export default function Navbar() {
               </div>
             </CustomButton>
 
-            <CustomButton
-              containerStyles="transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white "
-            >
-              <NavLink
-                to={isLanding ? '/login' : '/sign-up'}
-                className="text-secondary text-[15px] max-md:text-[13px] font-semibold  text-md group-hover:text-primary dark:group-hover:text-primary"
-              >
-                {isLanding ? 'Login' : 'Sing Up' }
-              </NavLink>
-            </CustomButton>
-
+            {user ? (
+              <MenuAvatar user={user} />
+            ) : (
+              <CustomButton containerStyles="transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white ">
+                <NavLink
+                  to={isLanding ? '/login' : '/sign-up'}
+                  className="text-secondary text-[15px] max-md:text-[13px] font-semibold  text-md group-hover:text-primary dark:group-hover:text-primary"
+                >
+                  {isLanding ? 'Login' : 'Sing Up'}
+                </NavLink>
+              </CustomButton>
+            )}
           </div>
         </div>
       </nav>
