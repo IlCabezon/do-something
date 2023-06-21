@@ -1,6 +1,3 @@
-// action
-import action from './action';
-
 export default {
   path: '/login',
   async lazy() {
@@ -8,7 +5,6 @@ export default {
 
     return {
       Component,
-      action,
     };
   },
 

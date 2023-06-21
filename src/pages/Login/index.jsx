@@ -1,8 +1,8 @@
 // native
-import { Fragment } from 'react';
+import { Fragment, useState, useContext } from 'react';
 
 // routing
-import { Form, Link, useSubmit, useActionData } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 
 // modules
 import { useFormik } from 'formik';
@@ -14,9 +14,19 @@ import { CustomButton, CustomInput, GoBackButton } from '../../components';
 // constants
 import { loginFields } from '../../constants/formsFields';
 
+// hooks
+import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
+
+// services
+import { logInToAccount } from '../../services/session.services';
+
+import { AuthContext } from '../../contexts/AuthContext';
+
 export function Component() {
-  const submit = useSubmit();
-  const actionData = useActionData();
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const [message, setMessage] = useState('');
+  useHandleLoggedUser();
 
   const initialValues = {
     email: '',
@@ -32,7 +42,12 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      submit(values, { method: 'post' });
+      const { message: errorMessage, session } = logInToAccount(values);
+
+      if (errorMessage) return setMessage(errorMessage);
+
+      login(session);
+      return navigate('/home');
     },
   });
   const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
@@ -46,7 +61,10 @@ export function Component() {
         </h3>
         <Form
           method="post"
-          onSubmit={handleSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
           className="flex flex-col mt-10 gap-4"
         >
           {loginFields.map(({ name, type, placeholder }) => (
@@ -63,16 +81,16 @@ export function Component() {
                 }}
               />
 
-              {!actionData && errors[name] && touched[name] && (
+              {!message && errors[name] && touched[name] && (
                 <p className="text-primary-error first-letter:uppercase">
                   {errors[name]}
                 </p>
               )}
             </Fragment>
           ))}
-          {actionData && actionData.message && (
+          {message && (
             <p className="text-primary-error first-letter:uppercase">
-              {actionData.message}
+              {message}
             </p>
           )}
           <CustomButton
