@@ -18,7 +18,7 @@ import { loginFields } from '../../constants/formsFields';
 import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
 
 // services
-import { logInToAccount } from '../../services/session.services';
+import { generateSession } from '../../services/session.services';
 
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -42,7 +42,7 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      const { message: errorMessage, session } = logInToAccount(values);
+      const { message: errorMessage, session } = generateSession(values);
 
       if (errorMessage) return setMessage(errorMessage);
 

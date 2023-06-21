@@ -1,8 +1,8 @@
 // native
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 
 // routing
-import { Form, Link, useSubmit } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 
 // modules
 import { useFormik } from 'formik';
@@ -14,9 +14,19 @@ import { CustomButton, CustomInput, GoBackButton } from '../../components';
 // constants
 import { signUpFields } from '../../constants/formsFields';
 
+// hooks
+import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
+
+// context
+import { AuthContext } from '../../contexts/AuthContext';
+
+// services
+import { createAccount, generateSession } from '../../services/session.services';
 
 export function Component() {
-  const submit = useSubmit();
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  useHandleLoggedUser();
 
   const initialValues = {
     email: '',
@@ -45,7 +55,10 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: async (formValues) => {
-      submit(formValues, { method: 'post' });
+      await createAccount(formValues);
+      const { session } = generateSession(formValues);
+      login(session);
+      navigate('/home');
     },
   });
   const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
@@ -61,7 +74,10 @@ export function Component() {
         </div>
         <Form
           method="post"
-          onSubmit={handleSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
           className="flex flex-col mt-10 gap-4"
         >
           {signUpFields.map(({ name, type, placeholder }) => (

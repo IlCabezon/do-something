@@ -23,7 +23,7 @@ export const createAccount = async (user) => {
   return token;
 };
 
-export const logInToAccount = ({ email, password }) => {
+export const generateSession = ({ email, password }) => {
   const token = localStorage.getItem('token');
 
   if (!token) {
