@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t-2 border-primary flex items-center py-5 max-md:px-10 px-20 text-primary-grey">
-        <p>@2023 CarHub. All Rights Reserved</p>
+        <p>@2023 Do Something!. All Rights Reserved</p>
       </div>
     </footer>
   );
