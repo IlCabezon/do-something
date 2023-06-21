@@ -11,4 +11,5 @@ export default {
       loader,
     };
   },
+  auth: true,
 };

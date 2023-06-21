@@ -1,3 +1,113 @@
+// native
+import { Fragment, useState, useContext } from 'react';
+
+// routing
+import { Form, Link, useNavigate } from 'react-router-dom';
+
+// modules
+import { useFormik } from 'formik';
+import { object, string } from 'yup';
+
+// components
+import { CustomButton, CustomInput, GoBackButton } from '../../components';
+
+// constants
+import { loginFields } from '../../constants/formsFields';
+
+// hooks
+import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
+
+// services
+import { generateSession } from '../../services/session.services';
+
+import { AuthContext } from '../../contexts/AuthContext';
+
 export function Component() {
-  return <div>login</div>;
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const [message, setMessage] = useState('');
+  useHandleLoggedUser();
+
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = object({
+    email: string().email().required(),
+    password: string().required('Enter a password'),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      const { message: errorMessage, session } = generateSession(values);
+
+      if (errorMessage) return setMessage(errorMessage);
+
+      login(session);
+      return navigate('/home');
+    },
+  });
+  const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
+
+  return (
+    <div className="main-card-page">
+      <div className="main-card-page__container">
+        <GoBackButton />
+        <h3 className="text-primary font-semibold text-[25px]">
+          Log in to your account
+        </h3>
+        <Form
+          method="post"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
+          className="flex flex-col mt-10 gap-4"
+        >
+          {loginFields.map(({ name, type, placeholder }) => (
+            <Fragment key={name}>
+              <CustomInput
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                error={touched[name] && errors[name]}
+                value={values[name]}
+                onChange={(e) => {
+                  setTouched({ ...touched, [name]: true });
+                  handleChange(e);
+                }}
+              />
+
+              {!message && errors[name] && touched[name] && (
+                <p className="text-primary-error first-letter:uppercase">
+                  {errors[name]}
+                </p>
+              )}
+            </Fragment>
+          ))}
+          {message && (
+            <p className="text-primary-error first-letter:uppercase">
+              {message}
+            </p>
+          )}
+          <CustomButton
+            btnType="submit"
+            containerStyles="blue-bordered-button bg-secondary"
+            isDisabled={Object.values(errors).length}
+            name="sign-up_submit"
+          >
+            <p className="text-primary-white">Continue</p>
+          </CustomButton>
+          <CustomButton>
+            <Link to="/sign-up">
+              <p className="text-secondary underline">Sign up for an account</p>
+            </Link>
+          </CustomButton>
+        </Form>
+      </div>
+    </div>
+  );
 }

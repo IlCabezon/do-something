@@ -17,6 +17,15 @@
     "import/extensions": "off",
     "no-multiple-empty-lines": ["error", { "max": 2 }],
     "react/prop-types": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": { "consistent": true, "multiline": true },
+        "ObjectPattern": { "consistent": true, "multiline": true },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+      }
+    ]
   }
 }

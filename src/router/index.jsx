@@ -1,30 +1,41 @@
 // routing
-import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 // pages
-import {
-  activitiesToDoConfig,
+import { activitiesToDoConfig,
   homeConfig,
   landingConfig,
   loginConfig,
-  signUpConfig,
-} from '../pages';
+  signUpConfig } from '../pages';
 
 // components
 import Layout from '../components/Layout';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      landingConfig,
-      homeConfig,
-      signUpConfig,
-      loginConfig,
-      activitiesToDoConfig,
-    ],
-  },
-]);
+// guards
+import AuthGuard from '../guards/AuthGuard';
 
-export default router;
+export default function Router() {
+  const routes = [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        landingConfig,
+        signUpConfig,
+        loginConfig,
+        {
+          path: '/',
+          element: <AuthGuard />,
+          children: [
+            homeConfig,
+            activitiesToDoConfig,
+          ],
+        },
+      ],
+    },
+  ];
+
+  const router = createBrowserRouter(routes);
+
+  return <RouterProvider router={router} />;
+}

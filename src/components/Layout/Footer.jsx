@@ -15,8 +15,8 @@ export default function Footer() {
           <Link to="/" className="flex items-center gap-5">
             <img src={logo} alt="logo" className="w-10" />
             <div className="flex gap-2">
-              <span className="nav-title">Do</span>
-              <span className="nav-title">Something!</span>
+              <span className="brand-title">Do</span>
+              <span className="brand-title">Something!</span>
             </div>
           </Link>
           <p className="text-primary-grey max-md:text-center">
@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t-2 border-primary flex items-center py-5 max-md:px-10 px-20 text-primary-grey">
-        <p>@2023 CarHub. All Rights Reserved</p>
+        <p>@2023 Do Something!. All Rights Reserved</p>
       </div>
     </footer>
   );
