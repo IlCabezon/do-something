@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 // components
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import CustomButton from './CustomButton';
 
 export default function CustomInput({
   type = 'text',
@@ -11,7 +10,8 @@ export default function CustomInput({
   placeholder,
   inputStyles = '',
   error,
-  onChange: handleChange = () => {},
+  onChange: handleChange = () => { },
+  autoComplete = 'off',
 }) {
   const [show, setShow] = useState(false);
 
@@ -29,6 +29,7 @@ export default function CustomInput({
   return (
     <div className="relative flex items-center">
       <input
+        autoComplete={autoComplete}
         id={name && `${name}_custom_input`}
         {...{
           type: show ? 'text' : type,
@@ -42,16 +43,17 @@ export default function CustomInput({
         className={`custom-input ${inputStyles}`}
       />
       {(name === 'password' || name === 'password-check') && (
-        <CustomButton
+        <button
+          type="button"
           onClick={() => setShow(!show)}
-          containerStyles="absolute right-0"
+          className="absolute right-5"
         >
           {show ? (
             <AiFillEyeInvisible size={25} color="#548bff" />
           ) : (
             <AiFillEye size={25} color="#548bff" />
           )}
-        </CustomButton>
+        </button>
       )}
     </div>
   );

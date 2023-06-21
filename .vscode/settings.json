@@ -2,7 +2,12 @@
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.organizeImports": true
+    "source.organizeImports": false
   },
-  "cSpell.words": ["cssnano", "linebreak", "tailwindcss"]
+  "cSpell.words": [
+    "cssnano",
+    "formik",
+    "linebreak",
+    "tailwindcss"
+  ]
 }

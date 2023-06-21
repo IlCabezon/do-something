@@ -1,4 +1,11 @@
 export default {
   path: '/login',
-  lazy: () => import('.'),
+  async lazy() {
+    const { Component } = await import('.');
+
+    return {
+      Component,
+    };
+  },
+
 };

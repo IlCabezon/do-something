@@ -26,8 +26,6 @@ export const pages = [
   },
 ];
 
-export const navbarLinks = [{ name: 'Sign up', path: '/sign-up' }];
-
 export const socialLinks = [
   {
     name: 'Instagram',
