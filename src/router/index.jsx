@@ -10,6 +10,7 @@ import { activitiesToDoConfig,
 
 // components
 import Layout from '../components/Layout';
+import PageNavbar from '../components/PageNavbar';
 
 // guards
 import AuthGuard from '../guards/AuthGuard';
@@ -24,11 +25,13 @@ export default function Router() {
         signUpConfig,
         loginConfig,
         {
-          path: '/',
+          path: '',
           element: <AuthGuard />,
           children: [
-            homeConfig,
-            activitiesToDoConfig,
+            {
+              element: <PageNavbar />,
+              children: [homeConfig, activitiesToDoConfig],
+            },
           ],
         },
       ],
