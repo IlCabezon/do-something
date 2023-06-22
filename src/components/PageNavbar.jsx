@@ -10,7 +10,7 @@ export default function PageNavbar() {
     <div className="w-full max-width min-h-[95%] mb-10">
       <div className="box-container">
         <div className="box bg-navbar-pattern bg-center bg-cover items-end rounded-t-xl">
-          <div className="absolute right-0 bottom-0 h-[70px] flex items-center w-full ">
+          <div className="absolute right-0 bottom-0 h-[50px] flex items-center w-full ">
             <NavLink
               key="private_home"
               to={privateLinks.home.path}

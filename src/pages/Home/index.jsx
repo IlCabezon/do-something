@@ -2,21 +2,21 @@
 import { useContext } from 'react';
 
 // routing
-import { useLoaderData, useRevalidator } from 'react-router-dom';
+import { useLoaderData, useRevalidator, useSubmit } from 'react-router-dom';
 
 // components
 import { TbReload } from 'react-icons/tb';
 import { CustomSelect } from './components';
-import { CustomButton } from '../../components';
+import { ActivityCard, CustomButton } from '../../components';
 
 // context
 import { AuthContext } from '../../contexts/AuthContext';
-
 
 // constants
 import { activityTypes, participants } from '../../constants/apiQuerys';
 
 export function Component() {
+  const submit = useSubmit();
   const { revalidate } = useRevalidator();
   const { activity } = useLoaderData();
   const { user } = useContext(AuthContext);
@@ -28,7 +28,7 @@ export function Component() {
           <p className="text-primary font-semibold text-[18px]">
             Welcome again:
           </p>
-          <div className="flex max-md:flex-col gap-2">
+          <div className="flex gap-2 max-sm:flex-col">
             <div className="flex gap-2">
               <span className="brand-title capitalize font-bold">
                 {user.name}
@@ -38,7 +38,7 @@ export function Component() {
               </span>
             </div>
 
-            <span className="brand-title capitalize font-bold max">
+            <span className="brand-title font-bold">
               <span>-</span>
               {' '}
               {user.age}
@@ -48,8 +48,14 @@ export function Component() {
           </div>
         </div>
 
-        <div className="w-full flex max-md:flex-col justify-evenly gap-5 mt-10">
-          <div className="flex-1">
+        <div className="w-full flex max-md:flex-col justify-evenly max-sm:gap-5 gap-2 mt-10">
+          <div className="flex-1 flex max-sm:flex-col items-center max-sm:gap-5 gap-2">
+            <CustomButton
+              containerStyles="max-sm:w-full min-w-max bg-secondary rounded-md h-[45px] px-5"
+              onClick={() => submit(null)}
+            >
+              <p className="text-primary-white">Clear Filters</p>
+            </CustomButton>
             <CustomSelect
               options={activityTypes}
               queryName="type"
@@ -62,14 +68,17 @@ export function Component() {
               queryName="participants"
               placeholder="Participants"
             />
-            <CustomButton containerStyles=" bg-secondary rounded-md" onClick={revalidate}>
+            <CustomButton
+              containerStyles=" bg-secondary rounded-md h-[45px] px-5"
+              onClick={revalidate}
+            >
               <TbReload size={22} className="text-primary-white" />
             </CustomButton>
           </div>
         </div>
 
-        <div>
-          <p className="text-primary mt-10">{JSON.stringify(activity)}</p>
+        <div className="my-10">
+          <ActivityCard activity={activity} />
         </div>
 
         <div />

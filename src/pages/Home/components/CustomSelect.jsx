@@ -9,18 +9,30 @@ import { Listbox, Transition } from '@headlessui/react';
 import { BsChevronExpand } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-export default function Example({ options, queryName, placeholder = 'Select' }) {
+export default function Example({
+  options,
+  queryName,
+  placeholder = 'Select',
+}) {
   const submit = useSubmit();
   const { params } = useLoaderData();
   const [selected, setSelected] = useState({ value: placeholder });
-
+  console.log(params);
   const search = (e) => {
-    submit({ ...(params || {}), [queryName]: e.value }, { replace: false });
+    submit(
+      {
+        ...(params[queryName] ? { [queryName]: params[queryName] } : {}),
+        [queryName]: e.value,
+      },
+      { replace: false },
+    );
   };
 
   useEffect(() => {
     if (params[queryName]) {
       setSelected(options.find(({ value }) => value === params[queryName]));
+    } else {
+      setSelected({ value: placeholder });
     }
   }, [params[queryName]]);
 
