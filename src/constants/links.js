@@ -26,6 +26,18 @@ export const pages = [
   },
 ];
 
+export const privateLinks = {
+  home: {
+    path: '/home',
+    name: 'Home',
+  },
+  activities: {
+    name: 'My activities',
+    path: '/activities-to-do',
+  },
+};
+
+
 export const socialLinks = [
   {
     name: 'Instagram',
