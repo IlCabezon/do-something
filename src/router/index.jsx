@@ -1,3 +1,6 @@
+// native
+import { useContext } from 'react';
+
 // routing
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -15,7 +18,12 @@ import PageNavbar from '../components/PageNavbar';
 // guards
 import AuthGuard from '../guards/AuthGuard';
 
+// contexts
+import { ActivitiesContext } from '../contexts/ActivitiesContext';
+
 export default function Router() {
+  const activitiesContext = useContext(ActivitiesContext);
+
   const routes = [
     {
       path: '/',
@@ -30,7 +38,13 @@ export default function Router() {
           children: [
             {
               element: <PageNavbar />,
-              children: [homeConfig, activitiesToDoConfig],
+              children: [
+                {
+                  ...homeConfig,
+                  lazy: async () => homeConfig.lazy(activitiesContext),
+                },
+                activitiesToDoConfig,
+              ],
             },
           ],
         },

@@ -1,4 +1,5 @@
-export const adaptActivity = ({ activity, type, participants }) => ({
+export const adaptActivity = ({ key, activity, type, participants }) => ({
+  key,
   activity,
   type,
   participants,

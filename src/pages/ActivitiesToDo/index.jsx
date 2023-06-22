@@ -1,17 +1,20 @@
+// native
+import { useContext } from 'react';
+
+// components
+
+
+// contexts
+import { ActivitiesContext } from '../../contexts/ActivitiesContext';
+
 export function Component() {
+  const { activities } = useContext(ActivitiesContext);
+
   return (
     <div className="box-container">
-      <div className="box bg-primary-container rounded-b-xl flex-col">
-        <div className="flex flex-col gap-3 relative">
-          <p className="text-primary font-semibold text-[18px]">
-            Welcome again:
-          </p>
-
-        </div>
-
-
-        <div />
-      </div>
+      {
+        activities.map((activity) => JSON.stringify(activity))
+      }
     </div>
   );
 }

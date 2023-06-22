@@ -17,7 +17,7 @@ export default function Example({
   const submit = useSubmit();
   const { params } = useLoaderData();
   const [selected, setSelected] = useState({ value: placeholder });
-  console.log(params);
+
   const search = (e) => {
     submit(
       {
