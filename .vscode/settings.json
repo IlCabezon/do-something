@@ -9,6 +9,8 @@
     "formik",
     "headlessui",
     "linebreak",
+    "Querys",
+    "Revalidator",
     "tailwindcss"
   ]
 }

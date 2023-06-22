@@ -10,16 +10,17 @@
     --color-bg-secondary: #548bff;
     --color-bg-primary-inverse: #12131b;
     --color-bg-primary-container: #e2e8f0;
+    --color-bg-primary-container-inverse: #1e293b;
 
     --color-text-primary: #000;
     --color-text-secondary: #548bff;
     --color-text-primary-inverse: #fdf7ff;
 
-    --color-errors-primary: #FF0000;
+    --color-errors-primary: #ff0000;
 
     --color-primary-black: #12131b;
     --color-primary-white: #fdf7ff;
-    
+
     --color-primary-blue: #548bff;
     --color-primary-blue-100: rgb(84, 139, 255, 10%);
     --color-primary-blue-200: rgb(84, 139, 255, 20%);
@@ -42,15 +43,35 @@
     --color-primary-grey-800: rgb(175, 176, 179, 80%);
     --color-primary-grey-900: rgb(175, 176, 179, 90%);
   }
-
   .dark {
-    --color-bg-primary: #12131b;
+    --color-bg-primary: rgb(18, 19, 28);
     --color-bg-primary-inverse: #fdf7ff;
     --color-bg-primary-container: #1e293b;
+    --color-bg-primary-container-inverse: #e2e8f0;
 
     --color-text-primary: #fdf7ff;
     --color-text-primary-inverse: #000;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-bg-primary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-bg-secondary);
+    background-clip: content-box;
+  }
+
+  @media not all and (min-width: 768px) {
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
 }
 
 * {
@@ -72,16 +93,14 @@
 /** START: general styles **/
 
 .custom-input {
-  @apply
-  h-[45px] px-5 rounded-md w-full
+  @apply h-[45px] px-5 rounded-md w-full
   border-[2px] border-primary 
   bg-slate-100 dark:bg-slate-900 autofill:bg-black 
-  text-primary
+  text-primary;
 }
 
 .custom-input-error {
-  @apply
-  border-primary-error focus:border-primary-error focus:outline-none
+  @apply border-primary-error focus:border-primary-error focus:outline-none;
 }
 
 .custom-btn {
@@ -98,11 +117,10 @@
 }
 
 .disabled {
-  @apply
-  transition-all
+  @apply transition-all
   font-semibold
   text-primary-grey
-  bg-primary-grey-400 border-transparent !important
+  bg-primary-grey-400 border-transparent !important;
 }
 
 .brand-title {
@@ -175,19 +193,42 @@
 /** START: sign up & login styles **/
 
 .main-card-page {
-  @apply 
-  max-w-[1440px] h-[95vhw]
+  @apply max-w-[1440px] h-[95vhw]
   mx-auto max-2xl:px-20 max-md:px-0 py-10 max-md:py-2
-  flex justify-center items-start
+  flex justify-center items-start;
 }
 
-.main-card-page__container{
-  @apply
-  w-full max-w-[500px] max-md:w-[100%]
+.main-card-page__container {
+  @apply w-full max-w-[500px] max-md:w-[100%]
   relative p-[40px] 
   rounded-xl max-md:rounded-none
-  bg-primary-container 
+  bg-primary-container;
 }
 
 /** END: sign up & login styles **/
 
+/** START: home & activities styles **/
+
+.box-container {
+  @apply mx-auto max-2xl:px-20 max-md:px-0 max-w-[1440px] flex justify-center items-start;
+}
+
+.box {
+  @apply w-[95vw] min-h-[150px] p-10 pt-0 max-md:px-5 pb-5 flex relative;
+}
+
+.nav-tab {
+  @apply h-full
+  py-4 px-6 dark:border-primary-black 
+  flex items-center justify-between;
+}
+
+.nav-tab__selected {
+  @apply dark:text-primary text-primary-white bg-secondary;
+}
+
+.nav-tab__unselected {
+  @apply text-primary-grey bg-primary-container;
+}
+
+/** START: home & activities styles **/

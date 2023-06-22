@@ -48,11 +48,16 @@ export default {
         secondary: 'var(--color-bg-secondary)',
         default: 'var(--color-bg-primary)',
         inverse: 'var(--color-bg-primary-inverse)',
+        'primary-container-inverse': 'var(--color-bg-primary-container-inverse)',
       },
       borderColor: {
         primary: 'var(--color-primary-grey-500)',
         secondary: 'var(--color-text-secondary)',
         default: 'var(--color-bg-primary)',
+        sameAsBgCont: 'var(--color-bg-primary-container)',
+      },
+      backgroundImage: {
+        'navbar-pattern': "linear-gradient(rgb(84, 139, 255, 70%), rgb(84, 139, 255, 70%)), url('/src/assets/homeBanner.png')",
       },
     },
   },

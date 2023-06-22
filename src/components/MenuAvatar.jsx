@@ -22,7 +22,7 @@ export default function MenuAvatar({ user }) {
         <Menu.Button className="inline-flex">
           <div
             style={{ backgroundColor: avatar.color }}
-            className="p-3 rounded-full"
+            className="w-[50px] h-[50px] flex items-center justify-center rounded-full"
           >
             <p className="font-bold text-[18px] text-primary uppercase">{avatar.name}</p>
           </div>
@@ -44,12 +44,12 @@ export default function MenuAvatar({ user }) {
                   <Link
                     to="/home"
                     className={`${
-                      active ? 'bg-secondary text-inverse' : 'text-primary'
+                      active ? 'bg-secondary dark:text-primary text-inverse' : 'text-primary'
                     } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <AiFillHome
                       size={16}
-                      className={active ? 'text-inverse' : 'text-secondary'}
+                      className={active ? ' dark:text-primary text-inverse' : 'text-secondary'}
                     />
                     Go to Home
                   </Link>
@@ -60,12 +60,12 @@ export default function MenuAvatar({ user }) {
                   <Link
                     to="/activities-to-do"
                     className={`${
-                      active ? 'bg-secondary text-inverse' : 'text-primary'
+                      active ? 'bg-secondary dark:text-primary text-inverse' : 'text-primary'
                     } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <FaTasks
                       size={16}
-                      className={active ? 'text-inverse' : 'text-secondary'}
+                      className={active ? 'dark:text-primary text-inverse' : 'text-secondary'}
                     />
                     Go to my activities
                   </Link>
@@ -78,13 +78,13 @@ export default function MenuAvatar({ user }) {
                   <button
                     type="button"
                     className={`${
-                      active ? 'bg-secondary text-inverse' : 'text-primary'
+                      active ? 'bg-secondary dark:text-primary text-inverse' : 'text-primary'
                     } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm`}
                     onClick={logout}
                   >
                     <BiLogOut
                       size={16}
-                      className={active ? 'text-inverse' : 'text-secondary'}
+                      className={active ? 'dark:text-primary text-inverse' : 'text-secondary'}
                     />
                     Logout
                   </button>

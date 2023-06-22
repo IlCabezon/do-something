@@ -1,3 +1,6 @@
+// native
+import { useContext } from 'react';
+
 // routing
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -10,11 +13,17 @@ import { activitiesToDoConfig,
 
 // components
 import Layout from '../components/Layout';
+import PageNavbar from '../components/PageNavbar';
 
 // guards
 import AuthGuard from '../guards/AuthGuard';
 
+// contexts
+import { ActivitiesContext } from '../contexts/ActivitiesContext';
+
 export default function Router() {
+  const activitiesContext = useContext(ActivitiesContext);
+
   const routes = [
     {
       path: '/',
@@ -24,11 +33,19 @@ export default function Router() {
         signUpConfig,
         loginConfig,
         {
-          path: '/',
+          path: '',
           element: <AuthGuard />,
           children: [
-            homeConfig,
-            activitiesToDoConfig,
+            {
+              element: <PageNavbar />,
+              children: [
+                {
+                  ...homeConfig,
+                  lazy: async () => homeConfig.lazy(activitiesContext),
+                },
+                activitiesToDoConfig,
+              ],
+            },
           ],
         },
       ],
