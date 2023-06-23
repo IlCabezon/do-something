@@ -12,6 +12,7 @@ export const signToken = async (data) => {
   // jwt sign method only works on safe sites or localhost
   // this is an aux solution for when you are working
   // on local net trough local port
+  console.log(origin);
   if (!origin.includes('https') || !origin.includes('localhost')) {
     return auxToken;
   }
