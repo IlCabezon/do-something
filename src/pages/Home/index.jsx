@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 // components
 import CardFooter from './components/CardFooter';
-import { ActivityCard, ActivitiesFilter } from '../../components';
+import { ActivityCard, ActivitiesFilter, NoResults } from '../../components';
 
 export function Component() {
   const { activity } = useLoaderData();
@@ -14,7 +14,11 @@ export function Component() {
         <ActivitiesFilter />
 
         <div className="my-10">
-          <ActivityCard activity={activity} cardFooter={CardFooter} />
+          {activity.key ? (
+            <ActivityCard activity={activity} cardFooter={CardFooter} />
+          ) : (
+            <NoResults />
+          )}
         </div>
 
         <div />

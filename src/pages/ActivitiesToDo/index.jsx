@@ -2,7 +2,10 @@
 import { useLoaderData, useSubmit } from 'react-router-dom';
 
 // components
-import { CustomSelect, ActivityCard, CustomButton } from '../../components';
+import { CustomSelect,
+  ActivityCard,
+  CustomButton,
+  NoResults } from '../../components';
 import CardFooter from './components/CardFooter';
 
 // constants
@@ -43,13 +46,17 @@ export function Component() {
         </div>
 
         <div className="mt-5 flex flex-col gap-10">
-          {activities.map((activity) => (
-            <ActivityCard
-              key={activity.key}
-              activity={activity}
-              cardFooter={CardFooter}
-            />
-          ))}
+          {activities.length > 0 ? (
+            activities.map((activity) => (
+              <ActivityCard
+                key={activity.key}
+                activity={activity}
+                cardFooter={CardFooter}
+              />
+            ))
+          ) : (
+            <NoResults extraMessages={['You do not have activities yet']} />
+          )}
         </div>
       </div>
     </div>

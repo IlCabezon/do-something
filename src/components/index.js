@@ -6,5 +6,6 @@ export { default as CustomSelect } from './CustomSelect';
 export { default as GoBackButton } from './GoBackButton';
 export { default as Layout } from './Layout';
 export { default as MenuAvatar } from './MenuAvatar';
+export { default as NoResults } from './NoResults';
 export { default as NotFound } from './NotFound';
 export { default as PageNavbar } from './PageNavbar';

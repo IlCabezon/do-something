@@ -24,6 +24,7 @@ export default function loader(activitiesContext) {
       params: {
         type,
         participants: 0,
+        status,
       },
     };
   };
