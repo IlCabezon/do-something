@@ -20,7 +20,7 @@ Before running the project, make sure you have Node.js installed on your machine
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/do-something.git
+   git clone https://github.com/IlCabezon/do-something.git
    ```
 
 2. Navigate to the project's directory:
@@ -40,7 +40,7 @@ Before running the project, make sure you have Node.js installed on your machine
 To start the application, use the following command:
 
 ```bash
-npm start
+npm run dev
 ```
 
 This will launch the application and make it accessible in your web browser.
