@@ -1,8 +1,8 @@
 // native
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 
 // routing
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { Form, Link, useSubmit } from 'react-router-dom';
 
 // modules
 import { useFormik } from 'formik';
@@ -14,19 +14,12 @@ import { CustomButton, CustomInput, GoBackButton } from '../../components';
 // constants
 import { signUpFields } from '../../constants/formsFields';
 
-// hooks
-import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
-
-// context
-import { AuthContext } from '../../contexts/AuthContext';
-
-// services
-import { createAccount, generateSession } from '../../services/session.services';
+// utils
+import { generateRandomColor } from '../../utils/colors.utils';
+import { generateAvatarInitials } from '../../utils/user.utils';
 
 export function Component() {
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-  useHandleLoggedUser();
+  const submit = useSubmit();
 
   const initialValues = {
     email: '',
@@ -55,10 +48,18 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: async (formValues) => {
-      await createAccount(formValues);
-      const { session } = generateSession(formValues);
-      login(session);
-      navigate('/home');
+      const avatar = {
+        color: generateRandomColor(),
+        name: generateAvatarInitials(formValues),
+      };
+      const formattedUser = {
+        ...formValues,
+        avatar,
+      };
+
+      submit(formattedUser, {
+        method: 'post',
+      });
     },
   });
   const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;

@@ -1,3 +1,6 @@
+// routing
+import { useNavigate } from 'react-router';
+
 // components
 import { BsArrowRight } from 'react-icons/bs';
 import CustomButton from '../../../components/CustomButton';
@@ -6,6 +9,8 @@ import CustomButton from '../../../components/CustomButton';
 import hero from '../../../assets/hero.svg';
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-between max-lg:flex-col relative p-[40px] bg-primary-container rounded-xl">
       <div className="lg:w-[50%] max-lg:h-[50%]">
@@ -13,7 +18,7 @@ export default function Hero() {
         <p className="hero__subtitle">
           The right place to do something when you do not know what to do
         </p>
-        <CustomButton containerStyles="hero__customButton__container relative overflow-hidden hover:bg-secondary transition-all">
+        <CustomButton containerStyles="hero__customButton__container relative overflow-hidden hover:bg-secondary transition-all" onClick={() => navigate('/home')}>
           <div className="-left-[100%] group-hover:left-0 transition-all w-full h-full absolute flex justify-center items-center">
             <BsArrowRight size={40} color="white" />
           </div>
