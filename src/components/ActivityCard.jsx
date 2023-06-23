@@ -18,11 +18,11 @@ export default function ActivityCard({ activity, cardFooter: CardFooter }) {
 
   return (
     <div className="flex flex-col w-full min-h-[300px] bg-primary rounded-md">
-      <div className="w-full max-md:h-[150px] max-2xl:h-[200px] h-[250px]">
+      <div className="w-full max-md:h-[150px] max-2xl:h-[200px] h-[350px]">
         <img
           src={imageBasedType}
           alt="activity_bg"
-          className="h-full w-full object-cover rounded-t-md"
+          className="h-full w-full object-cover object-center rounded-t-md"
         />
       </div>
       <div className="flex flex-col gap-4 text-primary px-4 py-6">
