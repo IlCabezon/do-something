@@ -20,9 +20,11 @@ import AuthGuard from '../guards/AuthGuard';
 
 // contexts
 import { ActivitiesContext } from '../contexts/ActivitiesContext';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function Router() {
   const activitiesContext = useContext(ActivitiesContext);
+  const authContext = useContext(AuthContext);
 
   const routes = [
     {
@@ -30,8 +32,15 @@ export default function Router() {
       element: <Layout />,
       children: [
         landingConfig,
-        signUpConfig,
-        loginConfig,
+        {
+          ...signUpConfig,
+          lazy: () => signUpConfig.lazy(authContext),
+
+        },
+        {
+          ...loginConfig,
+          lazy: () => loginConfig.lazy(authContext),
+        },
         {
           path: '',
           element: <AuthGuard />,
