@@ -1,6 +1,8 @@
+export { default as ActivitiesFilter } from './ActivitiesFilter';
 export { default as ActivityCard } from './ActivityCard';
 export { default as CustomButton } from './CustomButton';
 export { default as CustomInput } from './CustomInput';
+export { default as CustomSelect } from './CustomSelect';
 export { default as GoBackButton } from './GoBackButton';
 export { default as Layout } from './Layout';
 export { default as MenuAvatar } from './MenuAvatar';

@@ -9,7 +9,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { BsChevronExpand } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
-export default function Example({
+export default function CustomSelect({
   options,
   queryName,
   placeholder = 'Select',
