@@ -37,7 +37,10 @@ export default function Router() {
           lazy: () => signUpConfig.lazy(authContext),
 
         },
-        loginConfig,
+        {
+          ...loginConfig,
+          lazy: () => loginConfig.lazy(authContext),
+        },
         {
           path: '',
           element: <AuthGuard />,

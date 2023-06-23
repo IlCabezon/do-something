@@ -1,8 +1,8 @@
 // native
-import { Fragment, useState, useContext } from 'react';
+import { Fragment } from 'react';
 
 // routing
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { Form, Link, useSubmit, useActionData } from 'react-router-dom';
 
 // modules
 import { useFormik } from 'formik';
@@ -14,19 +14,9 @@ import { CustomButton, CustomInput, GoBackButton } from '../../components';
 // constants
 import { loginFields } from '../../constants/formsFields';
 
-// hooks
-import useHandleLoggedUser from '../../hooks/useHandleLoggedUser';
-
-// services
-import { generateSession } from '../../services/session.services';
-
-import { AuthContext } from '../../contexts/AuthContext';
-
 export function Component() {
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-  const [message, setMessage] = useState('');
-  useHandleLoggedUser();
+  const submit = useSubmit();
+  const { message } = useActionData() || {};
 
   const initialValues = {
     email: '',
@@ -42,12 +32,9 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      const { message: errorMessage, session } = generateSession(values);
-
-      if (errorMessage) return setMessage(errorMessage);
-
-      login(session);
-      return navigate('/home');
+      submit(values, {
+        method: 'post',
+      });
     },
   });
   const { values, errors, touched, setTouched, handleChange, handleSubmit } = formik;
