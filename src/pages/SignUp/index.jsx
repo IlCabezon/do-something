@@ -14,10 +14,6 @@ import { CustomButton, CustomInput, GoBackButton } from '../../components';
 // constants
 import { signUpFields } from '../../constants/formsFields';
 
-// utils
-import { generateRandomColor } from '../../utils/colors.utils';
-import { generateAvatarInitials } from '../../utils/user.utils';
-
 export function Component() {
   const submit = useSubmit();
 
@@ -48,16 +44,7 @@ export function Component() {
     initialValues,
     validationSchema,
     onSubmit: async (formValues) => {
-      const avatar = {
-        color: generateRandomColor(),
-        name: generateAvatarInitials(formValues),
-      };
-      const formattedUser = {
-        ...formValues,
-        avatar,
-      };
-
-      submit(formattedUser, {
+      submit(formValues, {
         method: 'post',
       });
     },
