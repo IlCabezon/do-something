@@ -23,6 +23,12 @@ export function ActivitiesProvider({ children }) {
   );
 
   const addActivity = (activity) => {
+    if (activities.find((act) => act.key === activity.key)) {
+      return {
+        message: `The previous activity with id: ${activity.key} is already saved, find it on your activities`,
+      };
+    }
+
     const allActivities = [
       ...activities,
       { status: statuses.toDo.value, ...activity },
@@ -30,6 +36,7 @@ export function ActivitiesProvider({ children }) {
 
     setActivities(allActivities);
     localStorage.setItem('activities', JSON.stringify(allActivities));
+    return {};
   };
 
   const removeActivity = ({ key: incomingKey }) => {

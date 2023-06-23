@@ -4,7 +4,9 @@ export default function action({ addActivity }) {
     const formData = await request.formData();
     const activity = Object.fromEntries(formData);
 
-    addActivity(activity);
+    const { message } = addActivity(activity);
+
+    if (message) return { message };
 
     return { activity };
   };

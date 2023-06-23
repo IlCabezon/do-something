@@ -24,7 +24,7 @@ export default function MenuAvatar({ user }) {
             style={{ backgroundColor: avatar.color }}
             className="w-[50px] h-[50px] flex items-center justify-center rounded-full"
           >
-            <p className="font-bold text-[18px] text-primary uppercase">{avatar.name}</p>
+            <p className="font-bold text-[18px] text-primary-white uppercase">{avatar.name}</p>
           </div>
         </Menu.Button>
 

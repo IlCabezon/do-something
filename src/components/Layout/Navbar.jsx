@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // routing
-import { NavLink, useMatch } from 'react-router-dom';
+import { NavLink, useMatch, useNavigate } from 'react-router-dom';
 
 // constants
 import { BsFillSunFill } from 'react-icons/bs';
@@ -22,10 +22,11 @@ import { AuthContext } from '../../contexts/AuthContext';
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const isLanding = Boolean(useMatch('/sign-up'));
 
   return (
-    <header className="py-5 md:px-20 max-md:px-5 w-full">
+    <header className="py-5 md:px-20 max-md:px-5 w-full fixed top-0 z-[100] bg-primary">
       <nav className="max-width max-h-20 mx-auto flex justify-between items-center">
         <NavLink to="/">
           <div className="flex items-center gap-5">
@@ -53,10 +54,13 @@ export default function Navbar() {
             {user ? (
               <MenuAvatar user={user} />
             ) : (
-              <CustomButton containerStyles="transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white ">
+              <CustomButton
+                containerStyles="bg-secondary transition ease-in-out border-[2px] border-secondary rounded-md first:text-primary-white"
+                onClick={() => navigate(isLanding ? '/login' : '/sign-up')}
+              >
                 <NavLink
                   to={isLanding ? '/login' : '/sign-up'}
-                  className="text-secondary text-[15px] max-md:text-[13px] font-semibold  text-md group-hover:text-primary dark:group-hover:text-primary"
+                  className="text-primary-white text-[15px] max-md:text-[13px] font-semibold  text-md"
                 >
                   {isLanding ? 'Login' : 'Sing Up'}
                 </NavLink>

@@ -12,6 +12,9 @@ export default function action(authProvider) {
     const formData = await request.formData();
     const user = Object.fromEntries(formData);
 
+    const loweredCase = user.email.toLowerCase();
+    user.email = loweredCase;
+
     await createAccount(user);
     const { session } = generateSession(user);
     login(session);

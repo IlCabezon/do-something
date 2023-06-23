@@ -7,6 +7,7 @@ import cooking from './cooking.jpg';
 import relaxation from './relaxation.jpg';
 import music from './music.jpg';
 import busywork from './busywork.jpg';
+import noResults from './noResults.svg';
 
 export {
   educational,
@@ -18,4 +19,5 @@ export {
   relaxation,
   music,
   busywork,
+  noResults,
 };

@@ -16,7 +16,10 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
+    /* localStorage.removeItem('token'); */
+    if (localStorage.getItem('activities')) {
+      localStorage.removeItem('activities');
+    }
     setUser(null);
   };
 
