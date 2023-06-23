@@ -4,7 +4,7 @@ const loadJSON = (filePath) => JSON.parse(fs.readFileSync(new URL(filePath, impo
 const { activities: jsonActivities } = loadJSON('../mocks/activities.json');
 
 
-// this function will be used on prod
+// this function will be used for prod environment
 // to replicate api calls
 // that's because bored api doesn't have ssl certificate
 // and fetches can't be reached
@@ -30,7 +30,7 @@ const activities = jsonActivities;
 // uncomment the following line to breed the file
 // await fetchApiActivities();
 
-fs.writeFile('activities.json', JSON.stringify({ activities }), 'utf8', (err) => {
+fs.writeFile('../mocks/activities.json', JSON.stringify({ activities }), 'utf8', (err) => {
   if (err) throw err;
   process.exit('The file has been saved!');
 });
