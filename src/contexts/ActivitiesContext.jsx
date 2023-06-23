@@ -2,7 +2,7 @@
 import { createContext, useMemo, useState } from 'react';
 
 // constants
-import { statuses } from '../constants/acitivityStatuses';
+import { statuses } from '../constants/activityStatuses';
 
 export const ActivitiesContext = createContext();
 
@@ -15,7 +15,6 @@ function safelyParse(value) {
   }
 }
 
-
 export function ActivitiesProvider({ children }) {
   const storageActivities = localStorage.getItem('activities');
 
@@ -24,29 +23,46 @@ export function ActivitiesProvider({ children }) {
   );
 
   const addActivity = (activity) => {
-    const allActivities = [...activities, { status: statuses.done.name, ...activity }];
+    const allActivities = [
+      ...activities,
+      { status: statuses.toDo.value, ...activity },
+    ];
+
     setActivities(allActivities);
     localStorage.setItem('activities', JSON.stringify(allActivities));
   };
 
   const removeActivity = ({ key: incomingKey }) => {
-    const filteredActivities = activities.filter(({ key }) => key !== incomingKey);
+    const filteredActivities = activities.filter(
+      ({ key }) => key !== incomingKey,
+    );
     setActivities(filteredActivities);
+    localStorage.setItem('activities', JSON.stringify(filteredActivities));
   };
 
-  const toggleStatus = ({ key: incomingKey }, status) => {
-    const currentActivity = activities.find(({ key }) => key === incomingKey);
-    currentActivity.status = status;
+  const toggleStatus = ({ key: incomingKey }, incomingStatus) => {
+    const updatedActivities = activities.map((activity) => {
+      const register = activity;
 
-    setActivities([...activities, ...currentActivity]);
+      if (register.key === incomingKey) {
+        register.status = incomingStatus;
+      }
+      return register;
+    });
+
+    setActivities(updatedActivities);
+    localStorage.setItem('activities', JSON.stringify(updatedActivities));
   };
 
-  const contextValue = useMemo(() => ({
-    activities,
-    addActivity,
-    removeActivity,
-    toggleStatus,
-  }), [activities]);
+  const contextValue = useMemo(
+    () => ({
+      activities,
+      addActivity,
+      removeActivity,
+      toggleStatus,
+    }),
+    [activities],
+  );
 
   return (
     <ActivitiesContext.Provider value={contextValue}>
@@ -54,4 +70,3 @@ export function ActivitiesProvider({ children }) {
     </ActivitiesContext.Provider>
   );
 }
-

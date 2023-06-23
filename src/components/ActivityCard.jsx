@@ -1,11 +1,7 @@
-// routing
-import { useSubmit } from 'react-router-dom';
-
 // components
-import { MdFavoriteBorder, MdDescription } from 'react-icons/md';
+import { MdDescription } from 'react-icons/md';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FaUserFriends } from 'react-icons/fa';
-import CustomButton from './CustomButton';
 
 // constants
 import { activityTypes } from '../constants/apiQuerys';
@@ -13,9 +9,7 @@ import { activityTypes } from '../constants/apiQuerys';
 // assets
 import defaultImage from '../assets/defaultImage.jpg';
 
-export default function ActivityCard({ activity }) {
-  const submit = useSubmit();
-
+export default function ActivityCard({ activity, cardFooter: CardFooter }) {
   const { activity: act, type, participants } = activity;
 
   const extendedActType = activityTypes.find(({ value }) => value === type);
@@ -59,17 +53,7 @@ export default function ActivityCard({ activity }) {
         ))}
       </div>
       <div className="border-t border-primary px-4 py-6">
-        <CustomButton
-          containerStyles="w-full bg-secondary rounded-md"
-          onClick={() => {
-            submit(activity, { action: '/home', method: 'post', replace: false });
-          }}
-        >
-          <div className="w-full flex items-center justify-center gap-3">
-            <p className="text-primary-white">Add to my activities</p>
-            <MdFavoriteBorder size={22} className="text-primary-white" />
-          </div>
-        </CustomButton>
+        {CardFooter && <CardFooter activity={activity} />}
       </div>
     </div>
   );

@@ -41,9 +41,12 @@ export default function Router() {
               children: [
                 {
                   ...homeConfig,
-                  lazy: async () => homeConfig.lazy(activitiesContext),
+                  lazy: () => homeConfig.lazy(activitiesContext),
                 },
-                activitiesToDoConfig,
+                {
+                  ...activitiesToDoConfig,
+                  lazy: () => activitiesToDoConfig.lazy(activitiesContext),
+                },
               ],
             },
           ],
