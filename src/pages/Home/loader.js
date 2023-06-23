@@ -4,6 +4,9 @@ import { adaptActivity } from '../../adapters/activity.adapter';
 // mocks
 import { getRandomActivity, getRandomActWithFilter } from '../../mocks/apiEmulator';
 
+// constants
+import { baseUrl } from '../../constants/apiPaths';
+
 const env = import.meta.env.VITE_ENV;
 
 export default async function loaderActivity({ request }) {
@@ -28,7 +31,7 @@ export default async function loaderActivity({ request }) {
     }
   } else {
     const res = await fetch(
-      `http://www.boredapi.com/api/activity?${type ? `type=${type}&` : ''}${
+      `${baseUrl}?${type ? `type=${type}&` : ''}${
         participants ? `participants=${participants}` : ''
       }`,
     );
