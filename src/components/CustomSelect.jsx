@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from 'react';
 
 // routing
-import { useSubmit, useLoaderData } from 'react-router-dom';
+import { useSubmit, useLoaderData, useSearchParams } from 'react-router-dom';
 
 // components
 import { Listbox, Transition } from '@headlessui/react';
@@ -16,14 +16,23 @@ export default function CustomSelect({
 }) {
   const submit = useSubmit();
   const { params } = useLoaderData();
+  const [querySearch] = useSearchParams();
+  const type = querySearch.get('type');
+  const participants = querySearch.get('participants');
+  const status = querySearch.get('status');
+
   const [selected, setSelected] = useState({ value: placeholder });
 
   const search = (e) => {
+    const submitValues = {};
+
+    if (type) submitValues.type = type;
+    if (participants) submitValues.participants = participants;
+    if (status) submitValues.status = status;
+
+    submitValues[queryName] = e.value;
     submit(
-      {
-        ...(params[queryName] ? { [queryName]: params[queryName] } : {}),
-        [queryName]: e.value,
-      },
+      submitValues,
       { replace: false },
     );
   };
