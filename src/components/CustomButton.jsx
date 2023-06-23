@@ -1,5 +1,5 @@
 // native
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CustomButton({
   name,
@@ -10,6 +10,8 @@ export default function CustomButton({
   onClick,
   children,
 }) {
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const buttonElement = document.getElementById(`${name}_custom_button`);
     if (buttonElement) {
@@ -26,11 +28,15 @@ export default function CustomButton({
       id={name && `${name}_custom_button`}
       disabled={isDisabled}
       type={btnType}
-      onClick={onClick}
+      onClick={() => {
+        setLoading(true);
+        onClick();
+        setLoading(false);
+      }}
       className={`group custom-btn ${containerStyles}`}
       style={cssStyles || {}}
     >
-      {children}
+      {loading ? <p>cargando</p> : children }
     </button>
   );
 }
