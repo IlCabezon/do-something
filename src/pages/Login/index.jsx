@@ -25,7 +25,7 @@ export function Component() {
 
   const validationSchema = object({
     email: string().email().required(),
-    password: string().required('Enter a password'),
+    password: string().required('Enter a password').trim(),
   });
 
   const formik = useFormik({
