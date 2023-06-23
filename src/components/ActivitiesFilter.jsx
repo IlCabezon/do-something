@@ -16,7 +16,7 @@ export default function ActivitiesFilters() {
   const { revalidate } = useRevalidator();
 
   return (
-    <div className="w-full flex max-md:flex-col justify-evenly max-sm:gap-5 gap-2 mt-10">
+    <div className="w-full flex max-lg:flex-col justify-evenly max-sm:gap-5 gap-2 mt-10">
       <div className="flex-1 flex max-sm:flex-col items-center max-sm:gap-5 gap-2">
         <CustomButton
           containerStyles="max-sm:w-full min-w-max bg-secondary rounded-md h-[45px] px-5"
