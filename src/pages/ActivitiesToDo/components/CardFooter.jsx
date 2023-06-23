@@ -32,7 +32,8 @@ export default function CardFooter({ activity }) {
             ({ value, color: currentColor, Icon: CurrentIcon }) => value !== status && (
             <CustomButton
               key={value}
-              containerStyles={`w-full rounded-md bg-[${currentColor}]`}
+              containerStyles="w-full rounded-md"
+              cssStyles={{ backgroundColor: currentColor }}
               onClick={() => {
                 submit(
                   { ...activity, action: value },

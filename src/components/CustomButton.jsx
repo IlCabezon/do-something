@@ -5,6 +5,7 @@ export default function CustomButton({
   name,
   btnType = 'button',
   containerStyles,
+  cssStyles,
   isDisabled = false,
   onClick,
   children,
@@ -27,6 +28,7 @@ export default function CustomButton({
       type={btnType}
       onClick={onClick}
       className={`group custom-btn ${containerStyles}`}
+      style={cssStyles || {}}
     >
       {children}
     </button>
