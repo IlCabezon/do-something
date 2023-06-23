@@ -27,7 +27,6 @@ export const createAccount = async (user) => {
     avatar,
   };
 
-  console.log(formattedUser);
   const token = await signToken(formattedUser);
 
   localStorage.setItem('token', token);
