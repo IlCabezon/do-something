@@ -4,6 +4,9 @@ import { adaptActivity } from '../../adapters/activity.adapter';
 // mocks
 import { getRandomActivity, getRandomActWithFilter } from '../../mocks/apiEmulator';
 
+// constants
+import { baseUrl } from '../../constants/apiPaths';
+
 const env = import.meta.env.VITE_ENV;
 
 export default async function loaderActivity({ request }) {
@@ -13,22 +16,22 @@ export default async function loaderActivity({ request }) {
 
   let activity;
   if (env === 'prod') {
-    const filters = [];
+    const filters = {};
     if (type) {
-      filters.push(type);
+      filters.type = type;
     }
     if (participants) {
-      filters.push(participants);
+      filters.participants = participants;
     }
 
-    if (filters.length) {
+    if (Object.values(filters).length > 0) {
       activity = getRandomActWithFilter(filters);
     } else {
       activity = getRandomActivity();
     }
   } else {
     const res = await fetch(
-      `http://www.boredapi.com/api/activity?${type ? `type=${type}&` : ''}${
+      `${baseUrl}?${type ? `type=${type}&` : ''}${
         participants ? `participants=${participants}` : ''
       }`,
     );

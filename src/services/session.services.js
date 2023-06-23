@@ -1,6 +1,8 @@
 // utils
 import { hashString, compareHash } from '../utils/hash.utils';
 import { signToken, decodeToken } from '../utils/token.utils';
+import { generateRandomColor } from '../utils/colors.utils';
+import { generateAvatarInitials } from '../utils/user.utils';
 
 
 const returnErrorMessage = (message) => ({ message });
@@ -16,7 +18,16 @@ export const createAccount = async (user) => {
   const hashedPassword = hashString(userRegister.password);
   userRegister.password = hashedPassword;
 
-  const token = await signToken(userRegister);
+  const avatar = {
+    color: generateRandomColor(),
+    name: generateAvatarInitials(userRegister),
+  };
+  const formattedUser = {
+    ...userRegister,
+    avatar,
+  };
+
+  const token = await signToken(formattedUser);
 
   localStorage.setItem('token', token);
 

@@ -26,7 +26,7 @@ export default function Navbar() {
   const isLanding = Boolean(useMatch('/sign-up'));
 
   return (
-    <header className="py-5 md:px-20 max-md:px-5 w-full">
+    <header className="py-5 md:px-20 max-md:px-5 w-full fixed top-0 z-[100] bg-primary">
       <nav className="max-width max-h-20 mx-auto flex justify-between items-center">
         <NavLink to="/">
           <div className="flex items-center gap-5">
