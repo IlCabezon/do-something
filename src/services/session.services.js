@@ -36,7 +36,7 @@ export const generateSession = ({ email, password }) => {
   if (tokenEmail !== email) {
     return returnErrorMessage('Invalid email');
   }
-  console.log({ password, tokenPassword });
+
   if (!compareHash(password, tokenPassword)) {
     return returnErrorMessage('Invalid password');
   }
