@@ -16,15 +16,15 @@ export default async function loaderActivity({ request }) {
 
   let activity;
   if (env === 'prod') {
-    const filters = [];
+    const filters = {};
     if (type) {
-      filters.push(type);
+      filters.type = type;
     }
     if (participants) {
-      filters.push(participants);
+      filters.participants = participants;
     }
 
-    if (filters.length) {
+    if (Object.values(filters).length > 0) {
       activity = getRandomActWithFilter(filters);
     } else {
       activity = getRandomActivity();
